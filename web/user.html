@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network status - AquaNet</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-role="user">
+<a class="skip" href="#main">Skip to content</a>
+<header id="site-nav"></header>
+<main id="main"><div class="wrap">
+  <div class="dash-head">
+    <h1 style="font-size:1.8rem;margin:0">Network status</h1>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <span class="meta" id="meta">tick -</span>
+      <span class="conn" id="conn" role="status" aria-live="polite"><span class="dot"></span><span id="connText">Connecting...</span></span>
+    </div>
+  </div>
+  <div class="offline-banner" id="offline" role="alert">Server offline &mdash; showing last known data. Reconnecting automatically...</div>
+  <div class="panel">
+    <h2>Water tanks</h2>
+    <div class="tanks" id="tanks"><p class="meta">Waiting for data...</p></div>
+  </div>
+  <div class="cols">
+    <div>
+      <div class="panel">
+        <h2>Report a problem</h2>
+        <p class="meta">Seen a leak, no water, or low pressure? Tell the administrators.</p>
+        <form id="reportForm">
+          <label for="rTank">Where?</label>
+          <select id="rTank"><option value="">General / not sure</option></select>
+          <label for="rText">What is wrong?</label>
+          <textarea id="rText" maxlength="300" required placeholder="e.g. Water pressure is very low in District A"></textarea>
+          <button type="submit" class="btn small" style="margin-top:12px">Send report</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h2>My reports</h2>
+        <ul class="reports" id="myReports"><li>No reports yet.</li></ul>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <h2>System</h2>
+        <p class="meta" id="modeText">&hellip;</p>
+        <p class="meta">Pumps and valves are controlled by the administrators. You can watch everything live here.</p>
+        <div id="pumps"></div><div id="valves"></div>
+      </div>
+      <div class="panel">
+        <h2>Tank level history (%)</h2>
+        <canvas id="chart" role="img" aria-label="Line chart of tank fill percentage over the last two minutes"></canvas>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="panel">
+        <h2>Alerts</h2>
+        <ul class="feed" id="feed" aria-live="polite"><li class="INFO">No alerts yet.</li></ul>
+      </div>
+    </div>
+  </div>
+</div></main>
+<div class="toast" id="toast" role="status"></div>
+<footer id="site-footer"></footer>
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/user.js"></script>
+</body>
+</html>
